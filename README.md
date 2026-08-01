@@ -1,35 +1,33 @@
-# PIPELINE1 · Erste Ebene · ANKER / SCAN
+# PIPELINE1 · Quelle · Zahl · Vektor
 
-Zweck:
-PIPELINE1 bildet die erste Ebene der Vier-Ebenen-Pipeline ab:
-SCAN → OCR → NET/NC → OUTPUT.
+PIPELINE1 ist die erste Achse des Systems.
+Sie basiert vollständig auf CSV- und Vektor-Programmierung.
 
-Ebene 1 ist der ANKER:
-- Stabilisation
-- Eingang
-- EAR-Achse
-- Kamera-Scan
-- Rohdatenaufnahme
+## Struktur
+- Quelle: Q1 (achse-quelle-7.csv)
+- Zahl: Z1 (achse-zahl-3.csv)
+- Vektor: IX (3.csv)
+- Funktion: IO (6.csv)
+- Norm: RDY (9.csv)
+- Mechanik: M1 (mechanismus-zweck-4.csv)
+- Rel: R0 (modul-rel-0.csv)
+- Pos: P0 (pos-achse-0.csv)
 
-Axiome:
-K(t) = 1 / (1 - t)
-Φ(t) = φ∞ · K(t)
-DualTransport: io = +Δx·K(t), oi = -Δx·K(t)
+## Zweck
+PIPELINE1 erzeugt den ersten Impuls:
+Input → Quelle → Zahl → Vektor → Norm → Mechanik.
 
-Struktur:
-Ebene 1: SCAN / ANKER / EAR
-Ebene 2: OCR
-Ebene 3: NET/NC
-Ebene 4: OUTPUT/OI
+## Module
+- [IX](ca://s?q=VEC_IX)
+- [IO](ca://s?q=AX_IO)
+- [RDY](ca://s?q=NM_RDY)
+- [M1](ca://s?q=NC_GRIP_Definition)
 
-Kompatibilität:
-- IO / OI
-- TRANS-WARB
-- WARB KANAL
-- Highway
-- Slalom
-- Axiom-Dreieck-6
-- Modul-IO-8
+## Matrix
+PIPELINE1 nutzt die 3-6-9-Matrix:
+- 3 = Grundvektoren
+- 6 = Funktionsachsen
+- 9 = Normmodule
 
-Status:
-Aktiv
+## Status
+Aktiv, neutral, Ursprung.
