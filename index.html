@@ -2,124 +2,115 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>PIPELINE9 · Matrix · CSV · Vektor</title>
+<title>PIPELINE1 · Grundachse · iki1uc</title>
 
 <style>
-  body { background:#000; color:#0f0; font-family:monospace; padding:40px; }
-  h1 { color:#6cf; text-align:center; margin-bottom:30px; }
-  .box { background:#111; border:1px solid #333; padding:20px; margin-bottom:25px; }
-  .title { color:#6cf; font-size:18px; margin-bottom:10px; }
-  pre { background:#000; padding:10px; border-left:3px solid #6cf; white-space:pre-wrap; }
-  ul { list-style:none; padding:0; }
-  li { margin:8px 0; }
-  a { color:#6cf; text-decoration:none; }
+    body {
+        background:#000;
+        color:#0f0;
+        font-family:Consolas, monospace;
+        padding:20px;
+    }
+    h1 { color:#6cf; }
+    pre {
+        background:#111;
+        padding:12px;
+        border:1px solid #333;
+        border-radius:6px;
+        color:#0f0;
+    }
+    .block { margin-bottom:20px; }
 </style>
+
+<script type="module">
+import {
+    PIPELINE_3,
+    PIPELINE_6,
+    PIPELINE_9,
+    PIPELINE_12,
+    CONTINIUM_TRUTH,
+    WHIRL,
+    GATE,
+    WLOCH
+} from "./um.js";
+
+// =========================
+// CSV Loader
+// =========================
+
+async function loadCSV(name){
+    const res = await fetch(name);
+    const text = await res.text();
+    return text.split("\n").map(r => r.split(","));
+}
+
+// =========================
+// PIPELINE1 Start
+// =========================
+
+async function PIPELINE1_START(){
+
+    // Pipeline‑Daten
+    const p3 = await loadCSV("3.csv");
+    const p6 = await loadCSV("6.csv");
+    const p9 = await loadCSV("9.csv");
+    const p12 = await loadCSV("datei-inhalt-12.csv");
+
+    // Achsen‑Bedeutung
+    const achse8 = await loadCSV("achse-bedeutung-8.csv");
+    const achse10 = await loadCSV("achse-bedeutung-10.csv");
+
+    // Stufen / Aufgaben
+    const stufe5 = await loadCSV("stufe-aufgabe-5.csv");
+
+    // Modul‑IO
+    const modul8 = await loadCSV("modul-io-8.csv");
+
+    // Axiom‑Dreieck
+    const axiom6 = await loadCSV("axiom-dreieck-6.csv");
+
+    // Wahrheit
+    const truth = CONTINIUM_TRUTH();
+
+    // WHIRL erzeugen
+    const whirl = WHIRL({ x: 9, y: 6, z: 3 });
+
+    // GATE + WLOCH
+    const gate = [GATE.ram(), GATE.cpu(), GATE.gpu()];
+    const wloch = [WLOCH.tmp(), WLOCH.trans(), WLOCH.warb()];
+
+    return {
+        pipeline: { p3, p6, p9, p12 },
+        achsen: { achse8, achse10 },
+        stufen: stufe5,
+        modul: modul8,
+        axiom: axiom6,
+        truth,
+        whirl,
+        gate,
+        wloch
+    };
+}
+
+// =========================
+// UI
+// =========================
+
+window.onload = async () => {
+    const out = await PIPELINE1_START();
+    document.getElementById("out").textContent =
+        JSON.stringify(out, null, 2);
+};
+</script>
+
 </head>
 
 <body>
 
-<h1>PIPELINE9 · Systemtreue · Prüfung · 756‑Wurzel</h1>
+<h1>PIPELINE1 · Grundachse · iki1uc</h1>
 
-<!-- Navigation -->
-<div class="box">
-  <div class="title">Navigation</div>
-  <ul>
-    <li><a href="README.md">README</a></li>
-    <li><a href="ID.html">ID</a></li>
-
-    <!-- Matrix -->
-    <li><a href="3.csv">3 · Grundvektoren</a></li>
-    <li><a href="6.csv">6 · Funktionsachsen</a></li>
-    <li><a href="9.csv">9 · Normmodule</a></li>
-
-    <!-- Achsen -->
-    <li><a href="achse-quelle-7.csv">Achse Quelle 7</a></li>
-    <li><a href="achse-zahl-3.csv">Achse Zahl 3</a></li>
-    <li><a href="pos-achse-0.csv">Pos Achse 0</a></li>
-
-    <!-- Mechanik -->
-    <li><a href="mechanismus-zweck-4.csv">Mechanismus Zweck 4</a></li>
-    <li><a href="modul-rel-0.csv">Modul Rel 0</a></li>
-
-    <!-- Pipeline Module -->
-    <li><a href="pipe.class.index.html">PIPE · Class</a></li>
-    <li><a href="pipe.geo.index.html">PIPE · Geo</a></li>
-    <li><a href="pipe.meta.index.html">PIPE · Meta</a></li>
-    <li><a href="pipe.weight.index.html">PIPE · Weight</a></li>
-    <li><a href="pipe.overdrive.index.html">PIPE · Overdrive</a></li>
-    <li><a href="pipe.hotswap.index.html">PIPE · Hotswap</a></li>
-    <li><a href="respo.motor.index.html">Respo Motor</a></li>
-    <li><a href="piX.index.html">piX</a></li>
-    <li><a href="mster.index.html">Master</a></li>
-    <li><a href="iki1uc.pipe.index.html">iki1uc PIPE</a></li>
-  </ul>
-</div>
-
-<!-- Matrix 3 / 6 / 9 -->
-<div class="box">
-  <div class="title">Matrix 3 · 6 · 9</div>
-  <pre>
-3 = Grundvektoren (IX, XI, X4)
-6 = Funktionsachsen (IO, OI, AIR, AIV, ALLIN, ALLOUT)
-9 = Normmodule (FIT, FIX, MISS, RDY, ERROR, HELP)
-  </pre>
-</div>
-
-<!-- Achsen -->
-<div class="box">
-  <div class="title">Achsen</div>
-  <pre>
-Quelle 7  → Ursprung, Eingang, Rohpunkt, Erstimpuls, Massepunkt, Vektorstart, Normstart
-Zahl 3    → 1, 3, 9
-Pos 0     → Ursprung, Eingang, Knoten, Orbit
-  </pre>
-</div>
-
-<!-- Mechanik -->
-<div class="box">
-  <div class="title">Mechanik</div>
-  <pre>
-M1 = greifen
-M2 = halten
-M3 = transportieren
-M4 = orbitieren
-
-Rel 0 = neutral
-  </pre>
-</div>
-
-<!-- Vektor Module -->
-<div class="box">
-  <div class="title">Vektor Module (aus CSV)</div>
-  <pre>
-[ IO, Eingang, +Δx, aktiv ]
-[ X4, Multi, 4, stabil ]
-[ AIR, Aufstieg, +Φ, hoch ]
-  </pre>
-</div>
-
-<!-- PIPELINE Übersicht -->
-<div class="box">
-  <div class="title">PIPELINE Übersicht</div>
-  <pre>
-PIPELINE1 = Quelle · Zahl · Vektor
-PIPELINE2 = Fusion
-PIPELINE3 = NET / NC
-PIPELINE4 = Output / OI
-PIPELINE9 = Normmodul (FIT/FIX/MISS/RDY/ERROR/HELP)
-  </pre>
-</div>
-
-<!-- Status -->
-<div class="box">
-  <div class="title">Status</div>
-  <pre>
-System: aktiv
-Matrix: geladen
-Vektoren: bereit
-NC: online
-PIPELINE9: überwacht
-  </pre>
+<div class="block">
+    <pre id="out">Lade PIPELINE1…</pre>
 </div>
 
 </body>
