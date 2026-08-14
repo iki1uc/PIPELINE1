@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>PIPELINE1 · Quelle · Zahl · Vektor · REAL</title>
- 
+
 <style>
 body{background:#000;color:#0f0;font-family:Consolas, monospace;padding:20px;}
 h1{color:#6cf;}
@@ -23,7 +23,7 @@ import { P1 } from "./pipelineP1.js";
 import { P2 } from "./pipelineP2.js";
 import { Pe } from "./pipelinePe.js";
 
-// GLOBAL OUTPUT
+// --- WICHTIG: ALLES GLOBAL MACHEN (wie MXU-OS) ---
 window.out = function(msg){
     document.getElementById("out").innerText = msg;
 };
