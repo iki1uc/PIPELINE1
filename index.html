@@ -42,4 +42,58 @@ window.qi_master = function(){
 };
 
 window.qi_respo = function(){
-    out("QI · RESPO\n" + JSON.stringify(QI.scan(coreScan().respo360), null
+    const core = coreScan();
+    out("QI · RESPO\n" + JSON.stringify(QI.scan(core.respo360), null, 2));
+};
+
+// =========================
+// PIPELINE1 — GLOBAL FUNCTIONS
+// =========================
+
+window.p1_start = function(){
+    out("PIPELINE1 · START\n" + JSON.stringify(P4.run(coreScan()), null, 2));
+};
+
+window.p1_wake = function(){
+    out("PIPELINE1 · WAKE\n" + JSON.stringify(P0.run(coreScan()), null, 2));
+};
+
+window.p1_melt = function(){
+    out("PIPELINE1 · MELT\n" + JSON.stringify(P1.run(coreScan()), null, 2));
+};
+
+window.p1_merge = function(){
+    out("PIPELINE1 · MERGE\n" + JSON.stringify(P2.run(coreScan()), null, 2));
+};
+
+window.p1_finalize = function(){
+    out("PIPELINE1 · FINALIZE\n" + JSON.stringify(Pe.run(coreScan()), null, 2));
+};
+
+</script>
+
+</head>
+
+<body>
+
+<h1>PIPELINE1 · Quelle · Zahl · Vektor</h1>
+
+<section>
+<h2>QI / IQQ</h2>
+<button onclick="qi_p1()">QI · PIPELINE1</button>
+<button onclick="qi_master()">QI · MASTER-KERN</button>
+<button onclick="qi_respo()">QI · RESPO</button>
+<pre id="out">Bereit…</pre>
+</section>
+
+<section>
+<h2>PIPELINE1 · Schalter</h2>
+<button onclick="p1_start()">P1 · start</button>
+<button onclick="p1_wake()">P1 · wake</button>
+<button onclick="p1_melt()">P1 · melt</button>
+<button onclick="p1_merge()">P1 · merge</button>
+<button onclick="p1_finalize()">P1 · finalize</button>
+</section>
+
+</body>
+</html>
